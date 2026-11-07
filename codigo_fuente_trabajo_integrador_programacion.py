@@ -1,3 +1,15 @@
+def validar_nombre(nombre):
+    nombre = nombre.strip()
+    if nombre == "":
+        raise ValueError("El campo no puede estar vacio")
+    return nombre
+
+def buscar_herramienta(inventario, nombre):
+    for producto in inventario:
+        if producto["herramienta"].strip().lower() == nombre.strip().lower():
+            return producto
+    return None
+
 def cargar_herramientas(inventario):
     print('Opción 1 en construcción')
 
@@ -56,5 +68,6 @@ def main():
             print(f"Error: {e}")   
     print("Fin del programa")
     
+
 
 main()
