@@ -15,8 +15,11 @@ def cargar_herramientas(inventario):
 
 
 def mostrar_inventario(inventario):
-    print('Opción 2 en construcción')
-
+    if len(inventario) == 0:
+        print("No hay herramientas cargadas")
+        return # sale de la función y vuelve al menú
+    for producto in inventario:
+        print(f"{producto['herramienta']}: {producto['cantidad']} unidades")
 
 def consultar_stock(inventario):
     print('Opción 3 en construcción')
@@ -36,6 +39,8 @@ def actualizar_stock(inventario):
 
 def main():
     inventario = []
+    inventario.append({'herramienta': 'Martillo', 'cantidad': 10})
+    inventario.append({'herramienta': 'Pala', 'cantidad': 0})
     opcion = 0
     print('Sistema de inventario iniciado')
     while opcion != 7:
