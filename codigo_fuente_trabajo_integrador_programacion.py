@@ -13,7 +13,35 @@ def buscar_herramienta(nombre, inventario):
 
 
 def cargar_herramientas(inventario):
-    print('Opción 1 en construcción')
+    while True:
+        try:
+            cantidad_herramientas = int(input("¿Cuántas herramientas vas a cargar? "))
+            if cantidad_herramientas <= 0:                                   
+                raise ValueError("La cantidad debe ser un número mayor que 0.")
+            break
+        except ValueError as e:
+            print(f"Error: {e}")
+    for i in range(cantidad_herramientas):
+        print(f"--- Herramienta {i + 1} de {cantidad_herramientas} ---")
+        while True:
+            try:
+                nombre = validar_nombre(input("Nombre: "))
+                if buscar_herramienta(nombre, inventario) != None:
+                    raise ValueError(f"La herramienta '{nombre}' ya existe en el inventario.")
+                break
+            except ValueError as e:
+                print(f"Error: {e}")
+        while True:
+            try:
+                stock = int(input(f"Stock inicial de {nombre}: "))
+                if stock < 0:                                               
+                    raise ValueError("El stock no puede ser negativo.")
+                break
+            except ValueError as e:
+                print(f"Error: {e}")
+        inventario.append({'herramienta': nombre, 'cantidad': stock})
+        print(f"Se dio de alta '{nombre}' con {stock} unidades.")
+
 
 
 def mostrar_inventario(inventario):
