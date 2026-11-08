@@ -16,7 +16,7 @@ def cargar_herramientas(inventario):
     while True:
         try:
             cantidad_herramientas = int(input("¿Cuántas herramientas vas a cargar? "))
-            if cantidad_herramientas <= 0:                                   
+            if cantidad_herramientas <= 0:
                 raise ValueError("La cantidad debe ser un número mayor que 0.")
             break
         except ValueError as e:
@@ -34,7 +34,7 @@ def cargar_herramientas(inventario):
         while True:
             try:
                 stock = int(input(f"Stock inicial de {nombre}: "))
-                if stock < 0:                                               
+                if stock < 0:
                     raise ValueError("El stock no puede ser negativo.")
                 break
             except ValueError as e:
@@ -43,10 +43,9 @@ def cargar_herramientas(inventario):
         print(f"Se dio de alta '{nombre}' con {stock} unidades.")
 
 
-
 def mostrar_inventario(inventario):
     if len(inventario) == 0:
-        print("No hay herramientas cargadas")
+        print("No hay herramientas cargadas.")
         return  # sale de la función y vuelve al menú
     for producto in inventario:
         print(f"{producto['herramienta']}: {producto['cantidad']} unidades")
@@ -54,7 +53,7 @@ def mostrar_inventario(inventario):
 
 def consultar_stock(inventario):
     if len(inventario) == 0:
-        print("No hay herramientas cargadas")
+        print("No hay herramientas cargadas.")
         return
     nombre = validar_nombre(input("Ingresa el nombre de la herramienta: "))
     producto = buscar_herramienta(nombre, inventario)
@@ -66,7 +65,7 @@ def consultar_stock(inventario):
 
 def reporte_agotados(inventario):
     if len(inventario) == 0:
-        print("No hay herramientas cargadas")
+        print("No hay herramientas cargadas.")
         return
     hay_agotados = False  # bandera
     for producto in inventario:
@@ -74,7 +73,7 @@ def reporte_agotados(inventario):
             print(f"{producto['herramienta']} está agotada")
             hay_agotados = True
     if not hay_agotados:
-        print("No hay productos agotados")
+        print("No hay productos agotados.")
 
 
 def alta_producto(inventario):
@@ -82,35 +81,35 @@ def alta_producto(inventario):
     if buscar_herramienta(nombre, inventario) != None:
         raise ValueError(f"La herramienta '{nombre}' ya existe en el inventario.")
     stock = int(input(f"Ingresa las unidades para {nombre}: "))
-    if stock < 0:                                              
+    if stock < 0:
         raise ValueError("El stock no puede ser negativo.")
     inventario.append({'herramienta': nombre, 'cantidad': stock})
     print(f"Se dio de alta '{nombre}' con {stock} unidades.")
 
-    
+
 def actualizar_stock(inventario):
     if len(inventario) == 0:
-        print("No hay herramientas cargadas")
+        print("No hay herramientas cargadas.")
         return
-    nombre = validar_nombre(input("Ingresa el nombre de la herramienta que deseas actualizar stock: "))
+    nombre = validar_nombre(input("Ingresa el nombre de la herramienta a actualizar: "))
     producto = buscar_herramienta(nombre, inventario)
     if producto == None:
         print(f"La herramienta '{nombre}' no existe en el inventario.")
         return
     print("1. Ingreso")
     print("2. Venta")
-    opcion = input("Ingresa la opcion que deseas hacer: ").strip()
-    if opcion != "1" and opcion != "2":
+    tipo = input("Tipo de movimiento: ").strip()
+    if tipo != "1" and tipo != "2":
         print("Tipo de movimiento inválido. Debe ser 1 (Ingreso) o 2 (Venta).")
         return
     unidades = int(input("Cantidad de unidades: "))
     if unidades <= 0:
         raise ValueError("Las unidades deben ser un número mayor que 0.")
-    if opcion == "2":                                
+    if tipo == "2":  # venta
         if unidades > producto['cantidad']:
             raise ValueError(f"Stock insuficiente: hay {producto['cantidad']} unidades de {producto['herramienta']} y quisiste vender {unidades}.")
         producto['cantidad'] = producto['cantidad'] - unidades
-    else:                                             
+    else:  # ingreso
         producto['cantidad'] = producto['cantidad'] + unidades
     print(f"Stock actualizado: {producto['herramienta']} ahora tiene {producto['cantidad']} unidades.")
 
