@@ -50,11 +50,41 @@ def reporte_agotados(inventario):
 
 
 def alta_producto(inventario):
-    print('Opción 5 en construcción')
+    nombre = validar_nombre(input("Ingresa el nombre de la herramienta que deseas dar de alta: "))
+    if buscar_herramienta(nombre, inventario) != None:
+        raise ValueError(f"La herramienta '{nombre}' ya existe en el inventario.")
+    stock = int(input(f"Ingresa las unidades para {nombre}: "))
+    if stock < 0:                                              
+        raise ValueError("El stock no puede ser negativo.")
+    inventario.append({'herramienta': nombre, 'cantidad': stock})
+    print(f"Se dio de alta '{nombre}' con {stock} unidades.")
 
-
+    
 def actualizar_stock(inventario):
-    print('Opción 6 en construcción')
+    if len(inventario) == 0:
+        print("No hay herramientas cargadas")
+        return
+    nombre = validar_nombre(input("Ingresa el nombre de la herramienta que deseas actualizar stock: "))
+    producto = buscar_herramienta(nombre, inventario)
+    if producto == None:
+        print(f"La herramienta '{nombre}' no existe en el inventario.")
+        return
+    print("1. Ingreso")
+    print("2. Venta")
+    opcion = input("Ingresa la opcion que deseas hacer: ").strip()
+    if opcion != "1" and opcion != "2":
+        print("Tipo de movimiento inválido. Debe ser 1 (Ingreso) o 2 (Venta).")
+        return
+    unidades = int(input("Cantidad de unidades: "))
+    if unidades <= 0:
+        raise ValueError("Las unidades deben ser un número mayor que 0.")
+    if opcion == "2":                                
+        if unidades > producto['cantidad']:
+            raise ValueError(f"Stock insuficiente: hay {producto['cantidad']} unidades de {producto['herramienta']} y quisiste vender {unidades}.")
+        producto['cantidad'] = producto['cantidad'] - unidades
+    else:                                             
+        producto['cantidad'] = producto['cantidad'] + unidades
+    print(f"Stock actualizado: {producto['herramienta']} ahora tiene {producto['cantidad']} unidades.")
 
 
 def main():
