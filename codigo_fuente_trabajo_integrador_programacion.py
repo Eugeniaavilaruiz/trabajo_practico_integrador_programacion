@@ -1,20 +1,26 @@
 def validar_nombre(nombre):
     """Valida el nombre de una herramienta ingresado por el usuario.
-
+ 
     Le quita los espacios del principio y del final.
     Parámetro: nombre (texto escrito por el usuario).
     Devuelve: el nombre sin espacios sobrantes.
-    Lanza ValueError si el nombre queda vacío.
+    Lanza ValueError si el nombre queda vacío o si no contiene ninguna letra.
     """
     nombre = nombre.strip()
     if nombre == "":
         raise ValueError("El nombre de la herramienta no puede estar vacío.")
+    tiene_letra = False  # bandera
+    for caracter in nombre:
+        if caracter.isalpha():
+            tiene_letra = True
+    if not tiene_letra:
+        raise ValueError("El nombre de la herramienta debe contener al menos una letra.")
     return nombre
-
-
+ 
+ 
 def buscar_herramienta(nombre, inventario):
     """Busca una herramienta en el inventario por su nombre.
-
+ 
     Compara sin tener en cuenta mayúsculas ni espacios sobrantes.
     Parámetros: nombre (texto a buscar) e inventario (lista de herramientas).
     Devuelve: el diccionario de la herramienta si la encuentra, o None si no existe.
@@ -23,7 +29,6 @@ def buscar_herramienta(nombre, inventario):
         if producto["herramienta"].strip().lower() == nombre.strip().lower():
             return producto
     return None
-
 
 def cargar_herramientas(inventario):
     """Opción 1: carga varias herramientas con su stock inicial.
