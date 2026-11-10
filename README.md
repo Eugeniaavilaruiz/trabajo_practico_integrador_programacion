@@ -17,7 +17,7 @@ Requiere Python 3.12 o superior.
 
 ## Video demostrativo
 
-🎥 [Ver el video][(PEGAR_ACÁ_EL_LINK_DEL_VIDEO)](https://drive.google.com/file/d/1equ7UqwJL4xxdGbDdPmWe-nxbEAdDNWY/view?usp=sharing)
+🎥 [Ver el video][(Link del video)](https://drive.google.com/file/d/1equ7UqwJL4xxdGbDdPmWe-nxbEAdDNWY/view?usp=sharing)
 
 ## Documentación
 
