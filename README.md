@@ -21,6 +21,6 @@ Requiere Python 3.12 o superior.
 
 ## Documentación
 
-📚 [Informe en PDF]([Avila_Eugenia_Informe_TPI.pdf](https://github.com/Eugeniaavilaruiz/trabajo_practico_integrador_programacion/blob/main/Informe_trabajo_integrador_programacion.pdf))
+📚 [Informe en PDF] https://github.com/Eugeniaavilaruiz/trabajo_practico_integrador_programacion/blob/main/Informe_trabajo_integrador_programacion.pdf
 
 Los diagramas de flujo están en la carpeta [`diagramas`](diagramas).
